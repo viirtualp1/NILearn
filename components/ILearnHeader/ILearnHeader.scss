@@ -1,0 +1,14 @@
+@import "@/assets/variables.scss";
+
+.header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 55px;
+  background: $white-darken;
+  color: $text-color;
+
+  h2 {
+    font-weight: 500;
+  }
+}

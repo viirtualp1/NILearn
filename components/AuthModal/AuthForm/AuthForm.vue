@@ -1,0 +1,113 @@
+<template>
+  <div>
+    <v-alert></v-alert>
+
+    <v-card class="auth-form">
+      <v-card-title>Вход</v-card-title>
+      <v-divider />
+
+      <v-card-text>
+        <v-form>
+          <v-row>
+            <template v-if="isFirstAuthStep">
+              <v-col cols="12">
+                <v-text-field
+                  v-model="user.email"
+                  type="email"
+                  label="Email"
+                  outlined
+                  hide-details="auto"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="user.password"
+                  type="password"
+                  label="Пароль"
+                  outlined
+                  hide-details="auto"
+                ></v-text-field>
+              </v-col>
+            </template>
+            <template v-else>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="user.fullName"
+                  type="text"
+                  label="Полное имя"
+                  outlined
+                  hide-details="auto"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="user.school"
+                  type="text"
+                  label="Школа"
+                  outlined
+                  hide-details="auto"
+                ></v-text-field>
+              </v-col>
+            </template>
+          </v-row>
+        </v-form>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-col cols="12">
+          <v-btn v-if="!isFirstAuthStep" color="success">Войти</v-btn>
+
+          <v-btn
+            :color="isFirstAuthStep ? 'success' : 'primary'"
+            @click="nextAuthStep"
+          >
+            {{ isFirstAuthStep ? 'Далее' : 'Назад' }}
+          </v-btn>
+          <v-btn icon @click="isShowAlert = !isShowAlert">
+            <v-icon>mdi-information-outline</v-icon>
+          </v-btn>
+
+          <v-alert v-if="isShowAlert" class="mt-3" type="info">
+            Не волнуйтесь, если вы впервые на сайте, вы будете автоматически
+            зарегистрированы после заполнения формы
+          </v-alert>
+        </v-col>
+      </v-card-actions>
+    </v-card>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, reactive, ref } from '@nuxtjs/composition-api'
+import { UserType } from '~/types/user'
+import { getPureUser } from '~/services/auth'
+
+export default defineComponent({
+  props: {
+    userType: {
+      type: String,
+      default: UserType.STUDENT,
+      required: true,
+    },
+  },
+
+  setup() {
+    const user = reactive(getPureUser())
+    const isFirstAuthStep = ref(true)
+    const isShowAlert = ref(true)
+
+    function nextAuthStep() {
+      isFirstAuthStep.value = !isFirstAuthStep.value
+    }
+
+    return {
+      isFirstAuthStep,
+      isShowAlert,
+      user,
+      nextAuthStep,
+    }
+  },
+})
+</script>
+
+<style lang="scss" src="./AuthForm.scss"></style>
