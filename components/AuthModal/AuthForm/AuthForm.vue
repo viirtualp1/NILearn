@@ -33,6 +33,7 @@
               <v-col cols="12">
                 <v-text-field
                   v-model="user.fullName"
+                  type="text"
                   label="Полное имя"
                   outlined
                   hide-details="auto"
@@ -41,6 +42,7 @@
               <v-col cols="12">
                 <v-text-field
                   v-model="user.school"
+                  type="text"
                   label="Школа"
                   outlined
                   hide-details="auto"

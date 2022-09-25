@@ -38,6 +38,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/composition-api/module',
+    ['@pinia/nuxt', { disableVuex: false }],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

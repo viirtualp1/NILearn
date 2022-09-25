@@ -25,11 +25,8 @@ export default defineComponent({
       return store.state.main.user
     })
 
-    function submitForm() {}
-
     return {
       user,
-      submitForm,
     }
   },
 })
