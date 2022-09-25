@@ -1,8 +1,8 @@
-import { USER } from '@/types/user'
+import { UserType } from '@/types/user'
 
 export const state = () => ({
   isAuth: false,
-  user: USER.STUDENT,
+  user: UserType.STUDENT,
 })
 
 export const getters = {

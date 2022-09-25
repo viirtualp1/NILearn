@@ -1,19 +1,9 @@
 <template>
   <div class="auth-modal" :class="{ disabled: isChosen }">
     <v-row class="auth-modal__content">
-      <v-col cols="12">
-        <v-btn block dark color="indigo" @click="setUser(USER.TEACHER)">
-          Учитель
-        </v-btn>
-      </v-col>
-      <v-col cols="12">
-        <v-btn block dark color="indigo" @click="setUser(USER.TEACHER)">
-          Ученик
-        </v-btn>
-      </v-col>
-      <v-col cols="12">
-        <v-btn block dark color="indigo" @click="setUser(USER.DIRECTOR)">
-          Директор
+      <v-col v-for="user in UserType" :key="user" cols="12">
+        <v-btn large block dark color="indigo" @click="setUser(user)">
+          {{ UserTypeText[user] }}
         </v-btn>
       </v-col>
     </v-row>
@@ -22,21 +12,28 @@
 
 <script lang="ts">
 import { useStore, defineComponent, ref } from '@nuxtjs/composition-api'
-import { USER } from '~/types/user'
+import { UserType } from '~/types/user'
 
 export default defineComponent({
   setup() {
     const store = useStore()
     const isChosen = ref(false)
 
-    function setUser(userType: USER) {
+    const UserTypeText = {
+      teacher: 'Учитель',
+      student: 'Ученик',
+      director: 'Директор',
+    }
+
+    function setUser(userType: UserType | string) {
       store.commit('main/user', userType)
 
       isChosen.value = true
     }
 
     return {
-      USER,
+      UserType,
+      UserTypeText,
       isChosen,
       setUser,
     }

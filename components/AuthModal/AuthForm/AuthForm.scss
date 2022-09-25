@@ -1,0 +1,9 @@
+@import '@/assets/variables.scss';
+
+.auth-form {
+  &__subtitle {
+    span {
+      color: $pink-lighten-1;
+    }
+  }
+}

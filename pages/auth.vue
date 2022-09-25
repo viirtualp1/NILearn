@@ -1,44 +1,34 @@
 <template>
   <div class="auth">
-    <use-auth-modal />
+    <auth-modal />
 
     <v-container>
-      <h2>Вход / Регистрация</h2>
-
-      <v-form class="mt-3" @submit="submitForm">
-        <v-row>
-          <v-col cols="12">
-            <v-text-field
-              label="Email"
-              outlined
-              hide-details="auto"
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              label="Пароль"
-              outlined
-              hide-details="auto"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-      </v-form>
+      <auth-form :user-type="user" />
     </v-container>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import useAuthModal from '~/components/AuthModal/AuthModal.vue'
+import { defineComponent, useContext, computed } from '@nuxtjs/composition-api'
+import authModal from '@/components/AuthModal/AuthModal/AuthModal.vue'
+import authForm from '@/components/AuthModal/AuthForm/AuthForm.vue'
 
 export default defineComponent({
   components: {
-    useAuthModal,
+    authModal,
+    authForm,
   },
   setup() {
+    const { store } = useContext()
+
+    const user = computed(() => {
+      return store.state.main.user
+    })
+
     function submitForm() {}
 
     return {
+      user,
       submitForm,
     }
   },

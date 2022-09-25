@@ -4,13 +4,13 @@
 import {
   defineComponent,
   onMounted,
-  useStore,
+  useContext,
   useRouter,
 } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   setup() {
-    const store = useStore()
+    const { store } = useContext()
     const router = useRouter()
 
     onMounted(() => {
