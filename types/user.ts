@@ -4,7 +4,7 @@ export enum UserType {
   DIRECTOR = 'director',
 }
 
-export interface User {
+export interface UserData {
   fullName?: string
   email: string
   password: string

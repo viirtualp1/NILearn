@@ -85,7 +85,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  reactive,
+  ref,
+  useRouter,
+  useStore,
+} from '@nuxtjs/composition-api'
 import { UserType } from '~/types/user'
 import { signUp, getPureUser } from '@/services/auth'
 
@@ -99,6 +105,9 @@ export default defineComponent({
   },
 
   setup() {
+    const router = useRouter()
+    const store = useStore()
+
     const user = reactive(getPureUser())
     const isFirstAuthStep = ref(true)
     const isShowAlert = ref(true)
@@ -113,6 +122,9 @@ export default defineComponent({
 
       try {
         await signUp(user)
+        await store.dispatch('main/setNewUser', user)
+
+        router.push('/')
       } catch (err) {
         // eslint-disable-next-line no-console
         console.error(err)

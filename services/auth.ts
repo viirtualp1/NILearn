@@ -1,5 +1,5 @@
 import { ref, set } from 'firebase/database'
-import { User } from '~/types/user'
+import { UserData, UserType } from '~/types/user'
 import { getRandNumber } from '~/services/numbers'
 import { database } from '@/services/db'
 
