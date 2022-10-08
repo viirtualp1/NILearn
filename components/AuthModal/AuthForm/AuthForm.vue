@@ -7,7 +7,7 @@
       <v-divider />
 
       <v-card-text>
-        <v-form>
+        <v-form :readonly="isLoading">
           <v-row>
             <template v-if="isFirstAuthStep">
               <v-col cols="12">
@@ -55,7 +55,14 @@
 
       <v-card-actions>
         <v-col cols="12">
-          <v-btn v-if="!isFirstAuthStep" color="success">Войти</v-btn>
+          <v-btn
+            v-if="!isFirstAuthStep"
+            :loading="isLoading"
+            color="success"
+            @click="auth"
+          >
+            Войти
+          </v-btn>
 
           <v-btn
             :color="isFirstAuthStep ? 'success' : 'primary'"
@@ -80,7 +87,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from '@nuxtjs/composition-api'
 import { UserType } from '~/types/user'
-import { getPureUser } from '~/services/auth'
+import { signUp, getPureUser } from '@/services/auth'
 
 export default defineComponent({
   props: {
@@ -95,16 +102,32 @@ export default defineComponent({
     const user = reactive(getPureUser())
     const isFirstAuthStep = ref(true)
     const isShowAlert = ref(true)
+    const isLoading = ref(false)
 
     function nextAuthStep() {
       isFirstAuthStep.value = !isFirstAuthStep.value
     }
 
+    async function auth() {
+      isLoading.value = true
+
+      try {
+        await signUp(user)
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err)
+      } finally {
+        isLoading.value = false
+      }
+    }
+
     return {
       isFirstAuthStep,
+      isLoading,
       isShowAlert,
       user,
       nextAuthStep,
+      auth,
     }
   },
 })

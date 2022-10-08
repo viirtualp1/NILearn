@@ -1,10 +1,7 @@
 import { ref, set } from 'firebase/database'
-import { useStore } from '@nuxtjs/composition-api'
 import { User } from '~/types/user'
 import { getRandNumber } from '~/services/numbers'
 import { database } from '@/services/db'
-
-const store = useStore()
 
 export const getPureUser = (): User => ({
   fullName: '',
@@ -15,7 +12,7 @@ export const getPureUser = (): User => ({
 })
 
 export function signUp(data: User) {
-  store.commit('setAuth', true)
+  const id: string | number = getRandNumber()
 
-  return set(ref(database, 'users'), { ...data, id: getRandNumber() })
+  return set(ref(database, `users/${id}`), { ...data, id })
 }
