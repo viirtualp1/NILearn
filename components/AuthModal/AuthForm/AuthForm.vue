@@ -1,7 +1,5 @@
 <template>
   <div>
-    <v-alert></v-alert>
-
     <v-card class="auth-form">
       <v-card-title>Вход</v-card-title>
       <v-divider />
@@ -91,6 +89,7 @@ import {
   ref,
   useRouter,
   useStore,
+  PropType,
 } from '@nuxtjs/composition-api'
 import { UserType } from '~/types/user'
 import { signUp, getPureUser } from '@/services/auth'
@@ -98,17 +97,17 @@ import { signUp, getPureUser } from '@/services/auth'
 export default defineComponent({
   props: {
     userType: {
-      type: String,
+      type: String as PropType<UserType>,
       default: UserType.STUDENT,
       required: true,
     },
   },
 
-  setup() {
+  setup(props) {
     const router = useRouter()
     const store = useStore()
 
-    const user = reactive(getPureUser())
+    const user = reactive({ ...getPureUser(), type: props.userType })
     const isFirstAuthStep = ref(true)
     const isShowAlert = ref(true)
     const isLoading = ref(false)
@@ -123,6 +122,7 @@ export default defineComponent({
       try {
         await signUp(user)
         await store.dispatch('main/setNewUser', user)
+        localStorage.setItem('user', JSON.stringify(user))
 
         router.push('/')
       } catch (err) {

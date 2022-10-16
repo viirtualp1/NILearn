@@ -10,4 +10,5 @@ export interface UserData {
   password: string
   school?: string
   klass?: string
+  type: UserType
 }
