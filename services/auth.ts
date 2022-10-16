@@ -1,21 +1,25 @@
 import { ref, set } from 'firebase/database'
-import { useStore } from '@nuxtjs/composition-api'
-import { User } from '~/types/user'
-import { getRandNumber } from '~/services/numbers'
+import { UserData, UserType } from '@/types/user'
+import { getRandNumber } from '@/services/numbers'
 import { database } from '@/services/db'
 
-const store = useStore()
-
-export const getPureUser = (): User => ({
+export const getPureUser = (): UserData => ({
   fullName: '',
   email: '',
   password: '',
   school: '',
   klass: '',
+  type: UserType.STUDENT,
 })
 
-export function signUp(data: User) {
-  store.commit('setAuth', true)
+export function signUp(data: UserData) {
+  const id: string | number = getRandNumber()
 
-  return set(ref(database, 'users'), { ...data, id: getRandNumber() })
+  return set(ref(database, `users/${id}`), { ...data, id })
+}
+
+export function signOut() {
+  localStorage.removeItem('user')
+
+  location.reload()
 }

@@ -1,8 +1,10 @@
 import { UserType } from '@/types/user'
+import { getPureUser } from '~/services/auth'
 
 export const state = () => ({
   isAuth: false,
-  user: UserType.STUDENT,
+  userType: UserType.STUDENT,
+  userData: getPureUser(),
 })
 
 export const getters = {
@@ -10,8 +12,12 @@ export const getters = {
     return state.isAuth
   },
 
-  getUserState(state) {
+  getUserType(state) {
     return state.user
+  },
+
+  getUser(state) {
+    return state.userData
   },
 }
 
@@ -22,6 +28,10 @@ export const mutations = {
 
   user(state, userValue) {
     state.user = userValue
+  },
+
+  newUser(state, userData) {
+    state.userData = userData
   },
 }
 
@@ -34,6 +44,13 @@ export const actions = {
 
   setUser({ state }, userValue) {
     state.user = userValue
+
+    return state.user
+  },
+
+  setNewUser({ state }, userData) {
+    state.userData = userData
+    state.isAuth = true
 
     return state.user
   },

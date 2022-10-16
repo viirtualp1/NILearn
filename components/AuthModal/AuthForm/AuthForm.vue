@@ -1,13 +1,11 @@
 <template>
   <div>
-    <v-alert></v-alert>
-
     <v-card class="auth-form">
       <v-card-title>Вход</v-card-title>
       <v-divider />
 
       <v-card-text>
-        <v-form>
+        <v-form :readonly="isLoading">
           <v-row>
             <template v-if="isFirstAuthStep">
               <v-col cols="12">
@@ -55,7 +53,14 @@
 
       <v-card-actions>
         <v-col cols="12">
-          <v-btn v-if="!isFirstAuthStep" color="success">Войти</v-btn>
+          <v-btn
+            v-if="!isFirstAuthStep"
+            :loading="isLoading"
+            color="success"
+            @click="auth"
+          >
+            Войти
+          </v-btn>
 
           <v-btn
             :color="isFirstAuthStep ? 'success' : 'primary'"
@@ -78,33 +83,63 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  reactive,
+  ref,
+  useRouter,
+  useStore,
+  PropType,
+} from '@nuxtjs/composition-api'
 import { UserType } from '~/types/user'
-import { getPureUser } from '~/services/auth'
+import { signUp, getPureUser } from '@/services/auth'
 
 export default defineComponent({
   props: {
     userType: {
-      type: String,
+      type: String as PropType<UserType>,
       default: UserType.STUDENT,
       required: true,
     },
   },
 
-  setup() {
-    const user = reactive(getPureUser())
+  setup(props) {
+    const router = useRouter()
+    const store = useStore()
+
+    const user = reactive({ ...getPureUser(), type: props.userType })
     const isFirstAuthStep = ref(true)
     const isShowAlert = ref(true)
+    const isLoading = ref(false)
 
     function nextAuthStep() {
       isFirstAuthStep.value = !isFirstAuthStep.value
     }
 
+    async function auth() {
+      isLoading.value = true
+
+      try {
+        await signUp(user)
+        await store.dispatch('main/setNewUser', user)
+        localStorage.setItem('user', JSON.stringify(user))
+
+        router.push('/')
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err)
+      } finally {
+        isLoading.value = false
+      }
+    }
+
     return {
       isFirstAuthStep,
+      isLoading,
       isShowAlert,
       user,
       nextAuthStep,
+      auth,
     }
   },
 })
