@@ -1,21 +1,15 @@
 <template>
-  <div class="il-services">
-    <v-card class="mb-3">
-      <v-list flat>
-        <v-list-item-group v-model="selectedItem" color="primary">
-          <v-list-item v-for="(service, idx) in services" :key="idx">
-            <v-list-item-icon>
-              <v-icon v-text="service.icon"></v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                <nuxt-link :to="service.link">{{ service.name }}</nuxt-link>
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-card>
+  <div>
+    <nuxt-link
+      v-for="(service, idx) in services"
+      :key="idx"
+      class="il-services mb-6"
+      :to="service.link"
+    >
+      <v-card class="il-services__service mb-6">
+        {{ service.name }}
+      </v-card>
+    </nuxt-link>
   </div>
 </template>
 
@@ -38,3 +32,5 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" src="./ILServices.scss"></style>
