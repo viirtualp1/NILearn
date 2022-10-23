@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-card class="auth-form">
+  <div class="il-auth-form">
+    <v-card>
       <v-card-title>Вход</v-card-title>
       <v-divider />
 

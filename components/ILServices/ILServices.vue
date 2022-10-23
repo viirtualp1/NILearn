@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="il-services">
     <nuxt-link
       v-for="(service, idx) in services"
       :key="idx"
-      class="il-services mb-6"
+      class="il-services__service mb-6"
       :to="service.link"
     >
-      <v-card class="il-services__service mb-6">
+      <v-card class="il-services__service-card mb-6">
         {{ service.name }}
       </v-card>
     </nuxt-link>
@@ -22,7 +22,7 @@ export default defineComponent({
     const services = [
       { name: 'ILearn Тесты', icon: 'mdi-lead-pencil', link: '/tests' },
       { name: 'ILearn Заметки', icon: 'mdi-notebook', link: '/todo' },
-      { name: 'ILearn Чаты', icon: 'mdi-chat', link: '/chat' },
+      { name: 'ILearn Чаты', icon: 'mdi-chat', link: '/chats' },
     ]
 
     return {

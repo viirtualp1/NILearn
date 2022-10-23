@@ -1,9 +1,11 @@
 <template>
-  <h1>tests</h1>
+  <div class="il-tests"></div>
 </template>
 
-<script>
-export default {}
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({})
 </script>
 
 <style scoped></style>

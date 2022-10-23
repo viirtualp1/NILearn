@@ -1,5 +1,5 @@
 <template>
-  <h1>chats</h1>
+  <div class="il-chats"></div>
 </template>
 
 <script>
