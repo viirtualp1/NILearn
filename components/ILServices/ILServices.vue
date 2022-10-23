@@ -20,9 +20,9 @@ export default defineComponent({
   setup() {
     const selectedItem = ref(1)
     const services = [
-      { name: 'ILearn Тесты', icon: 'mdi-lead-pencil', link: '/tests' },
-      { name: 'ILearn Заметки', icon: 'mdi-notebook', link: '/todo' },
-      { name: 'ILearn Чаты', icon: 'mdi-chat', link: '/chats' },
+      { name: 'ILearn Тесты', icon: 'mdi-lead-pencil', link: '/ILTests' },
+      { name: 'ILearn Заметки', icon: 'mdi-notebook', link: '/ILNotes' },
+      { name: 'ILearn Чаты', icon: 'mdi-chat', link: '/ILChats' },
     ]
 
     return {
