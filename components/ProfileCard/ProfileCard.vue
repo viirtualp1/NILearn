@@ -3,13 +3,6 @@
     <v-card-title>{{ user.fullName }}</v-card-title>
     <v-divider />
 
-    <v-card-text>
-      <div class="my-4 text-subtitle-1">
-        {{ user.type }}
-      </div>
-      {{ user.school }}
-    </v-card-text>
-
     <v-card-actions>
       <v-btn color="deep-purple lighten-2" text @click="signOut">Выйти</v-btn>
     </v-card-actions>
