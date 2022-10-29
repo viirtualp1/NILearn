@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <i-learn-header />
+      <i-l-header />
 
       <v-container>
         <Nuxt />
@@ -12,11 +12,11 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import ILearnHeader from '@/components/ILearnHeader/ILearnHeader.vue'
+import ILHeader from '@/components/ILHeader/ILHeader.vue'
 
 export default defineComponent({
   components: {
-    ILearnHeader,
+    ILHeader,
   },
 })
 </script>

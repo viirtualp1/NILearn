@@ -2,7 +2,7 @@
   <div class="il-news">
     <v-card
       v-for="article in articles"
-      :key="article.title"
+      :key="article.id"
       class="mx-auto mb-6"
       max-width="560px"
     >

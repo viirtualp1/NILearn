@@ -37,7 +37,7 @@ export default defineComponent({
     onMounted(() => {
       const userLocalStorage = localStorage.getItem('user')
       if (!userLocalStorage) {
-        router.push('auth')
+        router.push('ILAuth')
       }
 
       const parsedUser = JSON.parse(userLocalStorage || '{}')
