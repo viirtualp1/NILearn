@@ -42,6 +42,8 @@
                   v-model="user.school"
                   type="text"
                   label="Школа"
+                  hint="Пример: 192"
+                  persistent-hint
                   outlined
                   hide-details="auto"
                 ></v-text-field>
@@ -93,6 +95,7 @@ import {
 } from '@nuxtjs/composition-api'
 import { UserType } from '~/types/user'
 import { signUp, getPureUser } from '@/services/auth'
+import { getRandNumber } from '~/services/numbers'
 
 export default defineComponent({
   props: {
@@ -107,9 +110,13 @@ export default defineComponent({
     const router = useRouter()
     const store = useStore()
 
-    const user = reactive({ ...getPureUser(), type: props.userType })
+    const user = reactive({
+      ...getPureUser(),
+      type: props.userType,
+      id: getRandNumber(),
+    })
     const isFirstAuthStep = ref(true)
-    const isShowAlert = ref(true)
+    const isShowAlert = ref(false)
     const isLoading = ref(false)
 
     function nextAuthStep() {

@@ -13,7 +13,7 @@ export function newNote(teacherId: string | number, data: NoteData) {
 }
 
 export async function getNotes(id: string | number) {
-  const notes = await get(child(ref(getDatabase()), `users/${id}/tasks`))
+  const notes = await get(child(ref(getDatabase()), `users/${id}/notes`))
 
   return notes
 }
