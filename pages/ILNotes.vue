@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useFetch } from '@nuxtjs/composition-api'
+import { defineComponent, useFetch, ref } from '@nuxtjs/composition-api'
 import { getNotes } from '@/services/notes'
 import { NoteData } from '@/types/note'
 import ILNote from '@/components/ILNote/ILNote.vue'
@@ -18,8 +18,9 @@ export default defineComponent({
   fetchOnServer: true,
   setup() {
     const teacher = JSON.parse(localStorage.getItem('user') || '')
-    const notes: NoteData[] = []
+    const notes = ref<NoteData[]>()
 
+    // @ts-ignore
     const { fetchState } = useFetch(() => (notes.value = getNotes(teacher.id)))
 
     return {

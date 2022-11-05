@@ -13,13 +13,7 @@ export function newNote(teacherId: string | number, data: NoteData) {
 }
 
 export async function getNotes(id: string | number) {
-  const { val } = await get(child(ref(getDatabase()), `users/${id}/tasks`))
-  let test = []
-  get(child(ref(getDatabase()), `users/${id}/tasks`)).then((snapshot) => {
-    test = snapshot.val()
-  })
+  const notes = await get(child(ref(getDatabase()), `users/${id}/tasks`))
 
-  console.log(id)
-
-  return val
+  return notes
 }
