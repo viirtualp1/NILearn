@@ -1,6 +1,6 @@
 <template>
   <div class="il-auth-modal" :class="{ disabled: isChosen }">
-    <v-row class="auth-modal__content">
+    <v-row class="il-auth-modal__content">
       <v-col v-for="user in UserType" :key="user" cols="12">
         <v-btn large block dark color="indigo" @click="setUser(user)">
           {{ UserTypeText[user] }}

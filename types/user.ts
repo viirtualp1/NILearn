@@ -11,4 +11,5 @@ export interface UserData {
   school?: string
   klass?: string
   type: UserType
+  id: string | number | null
 }
