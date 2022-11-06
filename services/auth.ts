@@ -8,7 +8,7 @@ export const getPureUser = (): UserData => ({
   password: '',
   school: '',
   klass: '',
-  type: UserType.STUDENT,
+  type: UserType.STUDENT,asdasd
   id: null,
 })
 
