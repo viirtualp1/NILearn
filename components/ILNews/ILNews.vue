@@ -1,11 +1,6 @@
 <template>
   <div class="il-news">
-    <v-card
-      v-for="article in articles"
-      :key="article.id"
-      class="mx-auto mb-6"
-      max-width="560px"
-    >
+    <v-card v-for="article in articles" :key="article.id" class="mx-auto mb-6" max-width="560px">
       <v-card-title>{{ article.title }}</v-card-title>
       <v-card-subtitle>
         {{ article.author }} - {{ articleDate(article.date) }}
@@ -15,6 +10,9 @@
         <div v-html="article.text"></div>
       </v-card-text>
     </v-card>
+
+    <ILComments />
+
   </div>
 </template>
 
@@ -22,8 +20,12 @@
 import { defineComponent, ref } from '@nuxtjs/composition-api'
 import { format } from 'date-fns'
 import { ArticleData } from '@/types/article'
+import ILComments from '@/components/ILСomments/ILСomments.vue'
 
 export default defineComponent({
+  components: {
+    ILComments
+  },
   setup() {
     const articles = ref<ArticleData[]>([
       {
