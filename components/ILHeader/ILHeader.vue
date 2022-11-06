@@ -1,6 +1,8 @@
 <template>
   <header class="il-header">
-    <h2 class="ml-6 pt-2">{{ PROJECT_NAME }}</h2>
+    <nuxt-link to="/">
+      <h2 class="ml-6 pt-2">{{ PROJECT_NAME }}</h2>
+    </nuxt-link>
   </header>
 </template>
 

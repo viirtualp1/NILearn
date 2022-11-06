@@ -14,15 +14,6 @@
       <v-card-text>
         <div v-html="article.text"></div>
       </v-card-text>
-
-      <v-card-actions>
-        <v-btn color="indigo" icon>
-          <v-icon>mdi-heart</v-icon>
-        </v-btn>
-        <v-btn color="primary" icon>
-          <v-icon>mdi-chat</v-icon>
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </div>
 </template>
