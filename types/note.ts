@@ -11,3 +11,10 @@ export interface NoteData {
   priority: PRIORITY
   id: string | number
 }
+
+export interface CommentData {
+  id: string | number
+  name: string
+  text: string
+  date: string | number
+}
