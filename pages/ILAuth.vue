@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext, computed } from '@nuxtjs/composition-api'
+import { defineComponent, useStore, computed } from '@nuxtjs/composition-api'
 import authModal from '@/components/AuthModal/AuthModal/AuthModal.vue'
 import authForm from '@/components/AuthModal/AuthForm/AuthForm.vue'
 
@@ -19,7 +19,7 @@ export default defineComponent({
     authForm,
   },
   setup() {
-    const { store } = useContext()
+    const { store } = useStore()
 
     const user = computed(() => {
       return store.state.main.user

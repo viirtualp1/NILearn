@@ -72,6 +72,36 @@ export default {
     },
   },
 
+  router: {
+    routes: [
+      {
+        name: 'index',
+        path: '/',
+        component: 'pages/index.vue'
+      },
+      {
+        name: 'auth',
+        path: '/auth',
+        component: 'pages/ILauth.vue'
+      },
+      {
+        name: 'notes',
+        path: '/notes',
+        component: 'pages/ILNotes.vue'
+      },
+      {
+        name: 'tests',
+        path: '/tests',
+        component: 'pages/ILTests.vue'
+      },
+      {
+        name: 'chats',
+        path: '/chats',
+        component: 'pages/ILChats.vue'
+      },
+    ]
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
