@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import AppHeader from "@/components/App/AppHeader/AppHeader";
-import AppFooter from "@/components/App/AppFooter/AppFooter";
-import "./globals.css";
+import { AppHeader, AppFooter } from "@/components/App";
+
+import "react-dropdown/style.css";
+import "@/assets/styles/globals.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <body className={inter.className}>
         <AppHeader />
         {children}

@@ -1,0 +1,70 @@
+@import "@/assets/styles/mixins/media.scss";
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1rem 2rem;
+  background-color: var(--color-white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @include media-sm-up {
+    justify-content: left;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+
+    img {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__literature {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__nav {
+    display: none;
+
+    @include media-sm-up {
+      display: block;
+    }
+
+    ul {
+      li {
+        margin: 0 1rem;
+
+        a {
+          color: var(--color-secondary);
+          text-decoration: none;
+
+          &:hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+
+  &__icon {
+    display: block;
+    height: 24px;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    cursor: pointer;
+
+    &.close {
+      display: none;
+    }
+  }
+}

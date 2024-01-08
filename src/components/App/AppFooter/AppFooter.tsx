@@ -1,3 +1,3 @@
 export default function AppFooter() {
-    return <div>Footer</div>
+  return <div>Footer</div>;
 }

@@ -1,0 +1,22 @@
+.app-nav {
+  background: var(--color-white);
+  color: var(--color-black);
+  padding: 0 1rem;
+  padding-bottom: 1rem;
+
+  ul {
+    li {
+      margin-left: 1rem;
+      margin-bottom: 10px;
+
+      a {
+        color: var(--color-secondary);
+        text-decoration: none;
+
+        &:hover {
+          color: var(--color-primary);
+        }
+      }
+    }
+  }
+}

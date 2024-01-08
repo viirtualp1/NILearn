@@ -1,0 +1,47 @@
+@mixin media-sm-down {
+  @media (max-width: var(--media-sm)) {
+    @content;
+  }
+}
+
+@mixin media-sm-up {
+  @media (min-width: var(--media-sm)) {
+    @content;
+  }
+}
+
+@mixin media-md-down {
+  @media (max-width: var(--media-md)) {
+    @content;
+  }
+}
+
+@mixin media-md-up {
+  @media (min-width: var(--media-md)) {
+    @content;
+  }
+}
+
+@mixin media-lg-down {
+  @media (max-width: var(--media-lg)) {
+    @content;
+  }
+}
+
+@mixin media-lg-up {
+  @media (min-width: var(--media-lg)) {
+    @content;
+  }
+}
+
+@mixin media-xl-down {
+  @media (max-width: var(--media-xl)) {
+    @content;
+  }
+}
+
+@mixin media-xl-up {
+  @media (min-width: var(--media-xl)) {
+    @content;
+  }
+}
