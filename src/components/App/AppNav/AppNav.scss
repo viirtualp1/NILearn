@@ -1,13 +1,13 @@
 .app-nav {
+  padding: 0 2rem 1rem 2rem;
   background: var(--color-white);
   color: var(--color-black);
-  padding: 0 1rem;
-  padding-bottom: 1rem;
 
   ul {
     li {
-      margin-left: 1rem;
-      margin-bottom: 10px;
+      &:not(:last-of-type) {
+        margin-bottom: 10px;
+      }
 
       a {
         color: var(--color-secondary);

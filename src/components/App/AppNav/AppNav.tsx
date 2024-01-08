@@ -1,9 +1,15 @@
 import Link from "next/link";
 import "./AppNav.scss";
 
-export default function AppNav() {
+interface Props {
+  className?: string;
+}
+
+export default function AppNav(props: Props) {
+  const { className } = props;
+
   return (
-    <nav className="app-nav">
+    <nav className={`app-nav ${className}`}>
       <ul>
         <li>
           <Link href="/">Главная</Link>

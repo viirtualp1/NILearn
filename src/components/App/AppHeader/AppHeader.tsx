@@ -21,31 +21,33 @@ export default function AppHeader() {
   return (
     <>
       <header className="app-header">
-        <div className="app-header__logo">
-          <Link href="/">NILearn</Link>
+        <div className="app-header__container">
+          <div className="app-header__logo">
+            <Link href="/">NILearn</Link>
+          </div>
+          <nav className="app-header__nav">
+            <ul>
+              <li>
+                <Link href="/">Главная</Link>
+              </li>
+              <li>
+                <Link href="/about">О нас</Link>
+              </li>
+              <li>
+                <Link className="app-header__literature" href="/spl">
+                  СПЛ
+                  <NIQuestionButton text={SPLText} />
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <div className="app-header__icon" onClick={handleMenuToggle}>
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </div>
         </div>
-        <nav className="app-header__nav">
-          <ul>
-            <li>
-              <Link href="/">Главная</Link>
-            </li>
-            <li>
-              <Link href="/about">О нас</Link>
-            </li>
-            <li>
-              <Link className="app-header__literature" href="/spl">
-                СПЛ
-                <NIQuestionButton text={SPLText} />
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="app-header__icon" onClick={handleMenuToggle}>
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
-        </div>
-      </header>
 
-      {isMenuOpen && <AppNav />}
+        {isMenuOpen && <AppNav className="app-header__mobile-nav" />}
+      </header>
     </>
   );
 }
