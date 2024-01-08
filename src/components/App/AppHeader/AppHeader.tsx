@@ -10,7 +10,8 @@ export default function AppHeader() {
 
   const SPLText = (
     <span>
-      <strong>СПЛ</strong> - Список полезной литературы
+      <strong>СПЛ</strong> - Список полезной литературы. <br />
+      Здесь собраны всё: уроки, ссылки на полезную информацию и т.п.
     </span>
   );
 
