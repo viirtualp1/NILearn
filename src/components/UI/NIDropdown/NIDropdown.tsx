@@ -3,6 +3,7 @@ import { NIButton } from "@/components/UI/NIButton";
 import "./NIDropdown.scss";
 
 interface Props {
+  className?: string;
   button?: React.ReactNode;
   children?: React.ReactNode | string;
 }
@@ -10,7 +11,7 @@ interface Props {
 export default function NIDropdown(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { button, children } = props;
+  const { button, children, className } = props;
 
   const onMouseEnter = () => {
     setIsOpen(true);
@@ -30,7 +31,11 @@ export default function NIDropdown(props: Props) {
       />
 
       <div onMouseEnter={onMouseEnter} className="nidropdown">
-        <div className={`nidropdown__body ${isOpen ? "open" : "close"}`}>
+        <div
+          className={`nidropdown__body ${
+            isOpen ? "open" : "close"
+          } ${className}`}
+        >
           {children}
         </div>
       </div>
